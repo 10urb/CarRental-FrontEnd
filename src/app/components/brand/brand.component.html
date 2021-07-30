@@ -1,17 +1,21 @@
 <div *ngIf="dataLoaded == false" class="spinner-border" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-
-<table *ngIf="dataLoaded == true"  class="table"  >
+<table *ngIf="dataLoaded == true" class="table">
   <thead>
     <tr>
-      <th >Id</th>
-      <th >Marka</th>
+      <th>Marka</th>
     </tr>
   </thead>
-  <tr *ngFor="let brand of brands">
-    <td>{{brand.brandId}}</td>
-    <td>{{brand.brandName}}</td>
-    
+  <tr  >
+    <li [class]="getAllBrandClass()"  routerLink="/cars">Tüm markalar</li>
+    <td (click)="setCurrentBrand(brand)" 
+    routerLink="/cars/brand/{{brand.brandId}}"
+    [class]="getCurrentBrandClass(brand)" 
+    *ngFor="let brand of brands">{{ brand.brandName }}</td>
   </tr>
+
 </table>
+<h5 *ngIf="currentBrand">{{ currentBrand.brandName }}  seçtiniz</h5>
+
+
